@@ -1,0 +1,4 @@
+{
+  "presets": ["airbnb", "es2015"],
+  "plugins": ["syntax-async-functions", "transform-async-to-generator"]
+}
