@@ -1,0 +1,49 @@
+{
+  "name": "gpw_crawler",
+  "main": "dist/index.js",
+  "version": "0.0.1",
+  "author": "Kuba Siemiatkowski <kuba@saskla.cz>",
+  "engines": [
+    "node"
+  ],
+  "license": "ISC",
+  "description": "Crawler for Warsaw Stock Exchange (GPW) and NewConnect",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/siemiatj/gpw_crawler.git"
+  },
+  "dependencies": {
+    "bluebird": "3.5.0"
+  },
+  "devDependencies": {
+    "babel": "6.23.0",
+    "babel-core": "6.24.0",
+    "babel-eslint": "7.2.1",
+    "babel-plugin-syntax-async-functions": "6.13.0",
+    "babel-plugin-transform-async-to-generator": "6.8.0",
+    "babel-plugin-transform-regenerator": "6.8.0",
+    "babel-polyfill": "6.8.0",
+    "babel-preset-es2015": "6.24.0",
+    "del": "2.2.2",
+    "eslint": "3.18.0",
+    "eslint-plugin-promise": "3.5.0",
+    "gulp": "3.9.1",
+    "gulp-babel": "6.1.2",
+    "gulp-eslint": "3.0.1",
+    "gulp-nodemon": "2.2.1",
+    "run-sequence": "1.2.2"
+  },
+  "bugs": {
+    "url": "https://github.com/siemiatj/gpw_crawler/issues"
+  },
+  "homepage": "https://github.com/siemiatj/gpw_crawler#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gpw",
+    "warszawska gielda papierow",
+    "warsaw stock exchange",
+    "new connect"
+  ]
+}
