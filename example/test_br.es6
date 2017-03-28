@@ -3,8 +3,8 @@ import Console from 'better-console';
 import BRCrawl from '../dist/crawl_br';
 
 BRCrawl()
-.then((ret) => {
-  Console.log('ARTICLE: ', ret);
+.then((array) => {
+  Console.log('COMPANIES: ', array);
 })
 .catch((error) => {
   Console.log('ERROR: ', error);

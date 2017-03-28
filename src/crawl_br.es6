@@ -1,7 +1,4 @@
-// import * as cheerio from 'cheerio';
-// import 'babel-polyfill';
-import cheerio from 'cheerio';
-import fetch from 'node-fetch';
+import fetchCheerioObject from 'fetch-cheerio-object';
 
 class BiznesRadarCrawler {
   constructor(pageUrl = 'http://www.biznesradar.pl/gielda/akcje_gpw') {
@@ -10,21 +7,26 @@ class BiznesRadarCrawler {
   }
 
   async getCompanies() {
-    const page = await this.fetchPage();
+    const cheerioDOM = await this.fetchPage();
 
-    console.log('PAGE: ', page);
+    this.parseTableRows(cheerioDOM);
+
+    return this.companiesArray;
   }
 
   async fetchPage() {
-    return fetch(this.pageUrl)
-    .then(res => {
-      // console.log('RES: ', res);
-      const $ = cheerio.load(res);
-      console.log('$: ', $.html());
+    return fetchCheerioObject(this.pageUrl)
+    .then($ => $, error => console.log('There was an error fetching the page: ', error));
+  }
 
-      return $;
+/* eslint-disable array-callback-return */
+  parseTableRows($) {
+    const rows = $('.qTableFull').children();
+    rows.map((idx, row) => {
+      console.log('ROW:  ', $(row).children('');
     });
   }
+/* eslint-enable array-callback-return */
 }
 
 // this must return a promise
