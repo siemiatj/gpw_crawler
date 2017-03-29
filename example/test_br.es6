@@ -1,8 +1,8 @@
 import 'babel-polyfill';
 import Console from 'better-console';
-import BRCrawl from '../dist/crawl_br';
+import GPWcrawl from '../dist';
 
-BRCrawl()
+GPWcrawl()
 .then((array) => {
   Console.log('COMPANIES: ', array);
 })
