@@ -17,7 +17,13 @@ class BiznesRadarCrawler {
 
   async fetchPage() {
     return fetch(this.pageUrl)
-    .then(res => cheerio.load(res));
+    .then(res => {
+      // console.log('RES: ', res);
+      const $ = cheerio.load(res);
+      console.log('$: ', $.html());
+
+      return $;
+    });
   }
 }
 
