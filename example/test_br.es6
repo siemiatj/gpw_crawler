@@ -3,9 +3,5 @@ import Console from 'better-console';
 import GPWcrawl from '../dist';
 
 GPWcrawl()
-.then((array) => {
-  Console.log('COMPANIES: ', array);
-})
-.catch((gpwError, ncError) => {
-  Console.log('ERROR: ', gpwError, ncError);
-});
+.then(array => Console.log('COMPANIES: ', array))
+.catch((gpwError, ncError) => Console.log('ERROR: ', gpwError, ncError));

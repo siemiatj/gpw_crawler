@@ -46,7 +46,6 @@ class BiznesRadarCrawler {
       return $;
     }, error => {
       isRejected = true;
-      console.log('There was an error fetching the page: ', error);
 
       return error;
     });
