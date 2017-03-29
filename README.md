@@ -60,7 +60,9 @@ GPWcrawl()
 
 ## Terminal
 
-`gpw_crawler`
+```
+$ gpw_crawler
+```
 
 As a result you will receive the same array as above.
 

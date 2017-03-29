@@ -2,7 +2,7 @@
   "name": "gpw_crawler",
   "main": "dist/index.js",
   "bin": "bin/index.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Kuba Siemiatkowski <kuba@saskla.cz>",
   "engines": {
     "node": ">=4.0"
