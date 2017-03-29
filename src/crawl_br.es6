@@ -19,11 +19,26 @@ class BiznesRadarCrawler {
     .then($ => $, error => console.log('There was an error fetching the page: ', error));
   }
 
+  parseCompanyText(text) {
+    const split = text.split(' ');
+    const index = split[0];
+    let name = '';
+
+    if (split[1]) {
+      name = split[1].replace(/[()]/g, '');
+    }
+
+    return { index, name };
+  }
+
 /* eslint-disable array-callback-return */
   parseTableRows($) {
-    const rows = $('.qTableFull').children();
+    const rows = $('.qTableFull').find('.soid');
+
     rows.map((idx, row) => {
-      console.log('ROW:  ', $(row).children('');
+      const { index, name } = this.parseCompanyText($(row).children().first().text());
+
+      this.companiesArray.push({ index, name });
     });
   }
 /* eslint-enable array-callback-return */
