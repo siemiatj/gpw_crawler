@@ -3,13 +3,16 @@ import babel from 'gulp-babel';
 import del from 'del';
 import runSequence from 'run-sequence';
 import gulpEslint from 'gulp-eslint';
-import nodemon from 'gulp-nodemon';
 
-var config = {
+const config = {
   paths: {
     js: {
       src: 'src/**/*.es6',
       dist: 'dist/'
+    },
+    example: {
+      src: 'example/**/*.es6',
+      dist: 'example-parsed'
     }
   }
 };
@@ -24,6 +27,12 @@ gulp.task('babel-src', ['lint-src'], () =>
   gulp.src(config.paths.js.src)
     .pipe(babel())
     .pipe(gulp.dest(config.paths.js.dist))
+);
+
+gulp.task('babel-example', () =>
+  gulp.src(config.paths.example.src)
+    .pipe(babel())
+    .pipe(gulp.dest(config.paths.example.dist))
 );
 
 gulp.task('lint-src', () =>
