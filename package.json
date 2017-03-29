@@ -7,16 +7,13 @@
     "node"
   ],
   "license": "ISC",
-  "description": "Crawler for Warsaw Stock Exchange (GPW) and NewConnect",
+  "description": "Crawler for Warsaw Stock Exchange (GPW) and NewConnect getting all listed companies",
   "repository": {
     "type": "git",
     "url": "git://github.com/siemiatj/gpw_crawler.git"
   },
   "dependencies": {
-    "bluebird": "3.5.0",
-    "cheerio": "0.22.0",
     "fetch-cheerio-object": "^1.2.0",
-    "node-fetch": "1.6.3"
   },
   "devDependencies": {
     "babel": "6.23.0",
