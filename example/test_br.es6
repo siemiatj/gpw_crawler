@@ -6,6 +6,6 @@ GPWcrawl()
 .then((array) => {
   Console.log('COMPANIES: ', array);
 })
-.catch((error) => {
-  Console.log('ERROR: ', error);
+.catch((gpwError, ncError) => {
+  Console.log('ERROR: ', gpwError, ncError);
 });

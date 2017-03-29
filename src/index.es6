@@ -12,18 +12,16 @@ class BiznesRadarCrawler {
   }
 
   async getCompanies() {
-    const gpwDOM = await this.fetchPage(this.gpwPageUrl);
-    const ncDOM = await this.fetchPage(this.ncPageUrl);
+    const gpwQuery = await this.fetchPage(this.gpwPageUrl);
+    const ncQuery = await this.fetchPage(this.ncPageUrl);
 
-    console.log('BLA: ', gpwDOM);
-
-    return new Bluebird(function (resolve, reject) {
+    return new Bluebird((resolve, reject) => {
       const gpwCompanies = [];
       const ncCompanies = [];
 
-      if (gpwDOM.isFulfilled() && ncDOM.isFulfilled()) {
-        this.parseTableRows(gpwDOM, gpwCompanies);
-        this.parseTableRows(ncDOM, ncCompanies);
+      if (gpwQuery.isFulfilled() && ncQuery.isFulfilled()) {
+        this.parseTableRows(gpwQuery.$, gpwCompanies);
+        this.parseTableRows(ncQuery.$, ncCompanies);
 
         this.companiesObject = {
           GPW: gpwCompanies,
@@ -32,45 +30,32 @@ class BiznesRadarCrawler {
 
         resolve(this.companiesObject);
       } else {
-        reject(gpwDOM.isRejected(), ncDOM.isRejected());
+        reject(gpwQuery.$, ncQuery.$);
       }
-      // request(options)
-      //   .then($ => {
-      //     parseTitle($, fetchedArticle);
-      //     parseLinks($, fetchedArticle);
-      //     parseSections($, fetchedArticle);
-
-      //     resolve(fetchedArticle);
-      //   })
-      //   .catch(err => {
-      //     reject(err);
-      //   });
     });
   }
 
   async fetchPage(url) {
-    // Set initial state
-    let isPending = true;
     let isRejected = false;
     let isFulfilled = false;
 
-    const result = fetchCheerioObject(url)
+    const result = await fetchCheerioObject(url)
     .then($ => {
-      isPending = false;
       isFulfilled = true;
 
       return $;
     }, error => {
-      isPending = false;
-      isRejected = error;
+      isRejected = true;
       console.log('There was an error fetching the page: ', error);
+
+      return error;
     });
 
-    result.isFulfilled = function () { return isFulfilled; };
-    result.isPending = function () { return isPending; };
-    result.isRejected = function () { return isRejected; };
-
-    return result;
+    return {
+      $: result,
+      isFulfilled: function isResolved() { return isFulfilled; },
+      isRejected: function isNotResolved() { return isRejected; }
+    };
   }
 
   parseCompanyText(text) {
